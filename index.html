@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Outbound</title>
+  <style>
+    body { font-family: sans-serif; padding: 1em; }
+    input, select, button { margin-top: 0.5em; display: block; width: 100%; padding: 0.5em; }
+  </style>
+</head>
+<body>
+  <h2>Enviar WhatsApp</h2>
+  <label>Número de teléfono (E.164):</label>
+  <input type="text" id="phone" placeholder="+50688887777" />
+
+  <label>Plantilla:</label>
+  <select id="template">
+    <option value="hello_template">Hola cliente</option>
+    <option value="followup_template">Seguimiento</option>
+  </select>
+
+  <button onclick="sendWhatsApp()">Enviar</button>
+
+  <p id="status"></p>
+
+  <script>
+    async function sendWhatsApp() {
+      const phone = document.getElementById("phone").value;
+      const template = document.getElementById("template").value;
+      const status = document.getElementById("status");
+
+      const payload = {
+        phone_number: phone,
+        template_name: template
+      };
+
+      try {
+        const response = await fetch("https://TU_DOMINIO_O_WEBHOOK.com/send", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          status.innerText = "Mensaje enviado correctamente.";
+        } else {
+          const err = await response.text();
+          status.innerText = "Error: " + err;
+        }
+      } catch (error) {
+        status.innerText = "Fallo de conexión.";
+      }
+    }
+  </script>
+</body>
+</html>
