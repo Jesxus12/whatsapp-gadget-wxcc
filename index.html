@@ -91,7 +91,7 @@
             color: #fff;
         }
         button[type="submit"]:hover {
-            background: #005fa3;
+            background: #00c32a;
         }
         button[type="button"] {
             background: #fff;
@@ -116,7 +116,7 @@
             <input type="text" id="agent" name="agent" required placeholder="Ejemplo: Juan Pérez">
             <div class="button-group">
                 <button type="submit">Enviar mensaje</button>
-                <button type="button" onclick="window.location.href='your-cancel-url'">Cancelar</button>
+                <button type="button" onclick="document.getElementById('whatsappForm').reset(); document.getElementById('result').textContent = '';">Limpiar</button>
             </div>
         </form>
         <div id="result" style="margin-top:16px;text-align:center;"></div>
