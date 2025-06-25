@@ -6,7 +6,7 @@
     <title>Enviar mensaje de WhatsApp</title>
     <style>
         body {
-            background-color: #007EC3;
+            background-color: #ffffff;
             color: #000;
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
@@ -112,7 +112,7 @@
                 <span class="input-prefix">+506</span>
                 <input type="tel" id="phone" name="phone" class="input-phone" pattern="[0-9]{8}" maxlength="8" required placeholder="XXXXXXXX">
             </div>
-            <label for="agent">Nombre del Agente</label>
+            <label for="agent">Nombre de Agente</label>
             <input type="text" id="agent" name="agent" required placeholder="Ejemplo: Juan Pérez">
             <div class="button-group">
                 <button type="submit">Enviar mensaje</button>
@@ -143,18 +143,11 @@
                     })
                 });
 
-                let responseText;
-                try {
-                    responseText = await response.text();
-                } catch {
-                    responseText = '(Sin contenido)';
-                }
-
                 if (response.ok) {
-                resultDiv.textContent = 'Mensaje enviado correctamente.\nRespuesta del servidor:\n\n' + responseText;
+                resultDiv.textContent = 'Mensaje enviado correctamente.\n\n';
                 document.getElementById('whatsappForm').reset();
                 } else {
-                    resultDiv.textContent = 'Error al enviar el mensaje.\nRespuesta del servidor:\n' + responseText;
+                    resultDiv.textContent = 'Error al enviar el mensaje.\n';
                 }
             } catch (error) {
                 resultDiv.textContent = 'Error de conexión.';
